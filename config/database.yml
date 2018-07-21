@@ -81,5 +81,3 @@ test:
 production:
   <<: *default
   database: crud-tdd-rails_production
-  username: crud-tdd-rails
-  password: <%= ENV['CRUD-TDD-RAILS_DATABASE_PASSWORD'] %>
