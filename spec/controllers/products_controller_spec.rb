@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe ProductsController, type: :controller do
     describe 'as a logged User' do
         before do
-            @user = create(:user)
+            sign_in @user = create(:user)
             @product = create(:product)
             @category = create(:category)
             @category.products << @product
