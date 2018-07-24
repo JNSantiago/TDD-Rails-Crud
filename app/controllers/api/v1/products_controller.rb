@@ -1,10 +1,10 @@
 class Api::V1::ProductsController < Api::V1::ApiController
+    before_action :authenticate_user!
     before_action :set_product, only: [:update, :show, :destroy]
-    respond_to :json
 
     def index
         @products = Product.all
-        respond_with @products
+        render json: @products, status: 200
     end
 
     def show
