@@ -29,4 +29,25 @@ RSpec.describe "Products API", type: :request do
       expect(assigns(:products).count).to be > 5
     end
   end
+
+  describe "POST /products" do
+    before do
+      @category = create(:category)
+      @product_params = attributes_for(:product, category_id: @category.id)
+      post '/api/v1/products', params: { product: @product_params }, headers: headers
+    end
+
+    it "return status code 201" do
+      expect(response).to have_http_status(201)
+    end
+
+    it 'return a 5 products from database' do
+      expect(response.body).to include_json([
+        id: /\d/,
+        name: @product_params[:name],
+        description: @product_params[:description],
+        price: @product_params[:price]
+      ])
+    end
+  end
 end

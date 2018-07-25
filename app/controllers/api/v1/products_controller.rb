@@ -9,7 +9,7 @@ class Api::V1::ProductsController < Api::V1::ApiController
 
     def show
         begin
-            respond_with @product
+            render json: @product, status: 200
         rescue
             head 404
         end
